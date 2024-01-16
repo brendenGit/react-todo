@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { v4 as uuid } from 'uuid';
 
-import Todo from "./Todo";
-import NewTodoForm from "./NewTodoForm.js";
+import Todo from "../Todo/Todo.js";
+import NewTodoForm from "../NewTodoForm/NewTodoForm.js";
 
 function TodoList() {
     const [todos, setTodos] = useState([]);
 
     const addTodo = ({ text }) => {
-        console.log(text);
         const newTodo = { text, id: uuid() }
         setTodos(oldTodos => ([...oldTodos, newTodo]));
     };
@@ -24,6 +23,7 @@ function TodoList() {
                 {todos.map(todo => <Todo 
                                     text={todo.text} 
                                     id={todo.id}
+                                    key={todo.id}
                                     removeTodo={removeTodo}
                                 />)}
             </ul>
